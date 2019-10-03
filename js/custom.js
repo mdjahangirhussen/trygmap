@@ -1,13 +1,15 @@
- var map = new GMaps({
-            el: '#map',
-            lat: 24.886436,
-            lng: 91.880722
-        });
-        map.addMarker({
-            lat: 24.886436,
-            lng: 91.880722,
-            title: 'Sylhet',
-            icon: 'images/map-2.png',
-            animation: google.maps.Animation.BOUNCE
+var map = new GMaps({
+  div: '#map',
+  lat: -12.043333,
+  lng: -77.028333
+});
 
-        });
+
+GMaps.geocode({
+  address: 'Germany',
+  callback: function(results, status){
+    var firstResult = results[0];
+    map.setCenter(firstResult.geometry.location.lat(), firstResult.geometry.location.lng());
+    map.setZoom(7);
+  }
+}); 
